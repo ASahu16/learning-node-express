@@ -24,14 +24,35 @@ const getText = (path) => {
 // But with help of promise.
 // This code is must cleaner as compared to the formar module(11-fs-async.js)
 // read first file content
-getText('./content/first.txt')
-    .then((firstFileData) => {
-        console.log(firstFileData)
-        // reading the second file content.
-        getText('./content/second.txt')
-            .then((secondFileData) => console.log(secondFileData))
-            .catch((err2) => console.log(err2));
-    })
-    .catch((err) => console.log(err));
+// const test = getText('./content/first.txt')
+//     .then((firstFileData) => {
+//         console.log(firstFileData)
+//         // reading the second file content.
+//         getText('./content/second.txt')
+//             .then((secondFileData) => console.log(secondFileData))
+//             .catch((err2) => console.log(err2));
+//     })
+//     .catch((err) => console.log(err));
 
 
+
+/**
+ * Here we another approach to read the files using async-await
+ * This is much cleaner and readable that than the previous one.
+ * We simply have to async wrapper function
+ * And in that function we await for one async operation to finish 
+ * by using the `await` keyword.
+ * After reading for the file we log the result;
+ */
+const start = async () => {
+    try {
+        const first = await getText('./content/first.txt');
+        const second = await getText('./content/second.txt');
+        console.log(first, second);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+start();
