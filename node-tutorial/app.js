@@ -1,1 +1,1 @@
-console.log("Hello world! this is my first package");
+const block = require('./02-async-patterns/02-await-pattern');
