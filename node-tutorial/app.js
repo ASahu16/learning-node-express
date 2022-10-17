@@ -1,1 +1,1 @@
-const block = require('./02-async-patterns/01-block');
+const block = require('./02-async-patterns/02-await-pattern');
