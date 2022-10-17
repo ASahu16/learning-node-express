@@ -1,4 +1,28 @@
-const { readFile } = require('fs')
+const { readFile, writeFile } = require('fs').promises
+// Since we have option to get Promise readFile, writeFile we use them.
+// otherwise we can use below approach too.
+// Below 3 line are to convert any async function to promise, without wrapping inside Promise function
+// const util = require('util');
+// const readFilePromise = util.promisify(readFile);
+// const writeFilePromise = util.promisify(writeFile);
+
+
+const start = async () => {
+    try {
+        const first = await readFile('./content/first.txt', 'utf8')
+        const second = await readFile('./content/second.txt', 'utf8')
+        await writeFile(
+            './content/result-mind-grenade.txt',
+            `THIS IS AWESOME : ${first} ${second}`,
+            { flag: 'a' }
+        )
+        console.log(first, second)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+start()
 
 /**
  * Demonstrate Promise
@@ -8,23 +32,25 @@ const { readFile } = require('fs')
  * 
  * @return Promise object
  */
-const getText = (path) => {
-    return new Promise((resolve, reject) => {
-        readFile(path, 'utf8', (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
-    })
-}
+// const getText = (path) => {
+//     return new Promise((resolve, reject) => {
+//         readFile(path, 'utf8', (err, result) => {
+//             if (err) {
+//                 reject(err);
+//             } else {
+//                 resolve(result);
+//             }
+//         });
+//     })
+// }
 
-// Here we simple read two file as we did in '../11-fs-async.js' module
-// But with help of promise.
-// This code is must cleaner as compared to the formar module(11-fs-async.js)
+/**
+ * Here we simple read two file as we did in '../11-fs-async.js' module
+ * But with help of promise.
+ * This code is must cleaner as compared to the formar module(11-fs-async.js)
+ */
 // read first file content
-// const test = getText('./content/first.txt')
+// getText('./content/first.txt')
 //     .then((firstFileData) => {
 //         console.log(firstFileData)
 //         // reading the second file content.
@@ -44,15 +70,15 @@ const getText = (path) => {
  * by using the `await` keyword.
  * After reading for the file we log the result;
  */
-const start = async () => {
-    try {
-        const first = await getText('./content/first.txt');
-        const second = await getText('./content/second.txt');
-        console.log(first, second);
+// const start = async () => {
+//     try {
+//         const first = await getText('./content/first.txt');
+//         const second = await getText('./content/second.txt');
+//         console.log(first, second);
 
-    } catch (error) {
-        console.log(error);
-    }
-}
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 start();
