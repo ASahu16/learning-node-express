@@ -22,11 +22,19 @@
  * stream.finished(), stream.Readable.from() and stream.addAbortSignal().
  * 
  */
- const { createReadStream } = require('fs');
+const { createReadStream } = require('fs');
 
- const stream = createReadStream('./content/big.txt');
- 
- stream.on('data', (result) => {
-     console.log(result);
- });
- 
+// The stream will be read in chunks of size equal to the `highWaterMark` option. 
+// In the code example below, data will be in a single chunk if the file has less then 64 KiB
+// default 64 KiB 
+// last buffer - remainder
+// highWaterMark - control size
+// const stream = createReadStream('./content/big.txt', { highWaterMark: 9000 })
+// const stream = createReadStream('../content/big.txt', { encoding: 'utf8' })
+const stream = createReadStream('./content/big.txt');
+
+stream.on('data', (result) => {
+    console.log(result)
+});
+
+stream.on('error', (err) => console.log(err));
