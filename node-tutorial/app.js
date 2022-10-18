@@ -1,1 +1,1 @@
-const block = require('./02-async-patterns/02-await-pattern');
+const block = require('./13-event-emitter');
