@@ -24,6 +24,9 @@ Since any of these operations may schedule more operations and new events proces
 * [What the heck is the event loop anyway? | Philip Roberts | JSConf EU](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 * [Asynchronous JavaScript & EVENT LOOP from scratch 🔥 | Namaste JavaScript | Akshay Saini](https://www.youtube.com/watch?v=8zKuNo4ay8E)
 * [Asynchronous flow control](https://nodejs.dev/en/learn/asynchronous-flow-control/)
+* [A Deep Dive Into the Node js Event Loop - Tyler Hawkins | 
+UtahJS
+](https://www.youtube.com/watch?v=KKM_4-uQpow&list=PLuVqdWOQ-PNkUIsH2hz45VUmnDoUUzGI5&index=12)
 
 
 
