@@ -1,1 +1,1 @@
-const app = require('./src/04-express-app');
+const app = require('./src/05-all-static');
