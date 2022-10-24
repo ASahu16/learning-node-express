@@ -1,6 +1,6 @@
 
 
-const { readFile, writeFile } = require('fs')
+const { readFile } = require('fs')
 
 console.log('started a first task')
 // CHECK FILE PATH!!!!
