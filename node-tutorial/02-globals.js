@@ -17,7 +17,7 @@
 // modeile      -   info about the current module(file)
 // process      -   info about the env where the program is being executed
 
-console.log(__dirname)
+console.log(__dirname) // eslint-disable-line no-undef
 setInterval(()=>{
     console.log('hello world')
 }, 1000)

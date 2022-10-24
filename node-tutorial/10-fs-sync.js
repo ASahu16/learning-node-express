@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { readFileSync, writeFileSync } = require('fs');
 
 const second = readFileSync(`${__dirname}/content/second.txt`, 'utf8');

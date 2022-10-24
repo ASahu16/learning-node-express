@@ -1,5 +1,5 @@
 // local
-const secret = 'SUPER SECRET';
+const secret = 'SUPER SECRET'; // eslint-disable-line no-unused-vars
 
 // share
 const sankalp = 'sankalp';

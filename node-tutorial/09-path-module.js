@@ -1,5 +1,5 @@
 // The `node:path` module provides utilities for working with file and directory paths. 
-//It can be accessed using:
+// It can be accessed using:
 const path = require('path');
 
 /**
@@ -42,4 +42,4 @@ console.log(path.basename(filePath))
  * // this returns '/home/myself/node/wwwroot/static_files/gif/image.gif'
  * 
  */
-console.log(path.resolve(__dirname, 'content', 'subfolder', 'test.txt'))
+console.log(path.resolve(__dirname, 'content', 'subfolder', 'test.txt')) // eslint-disable-line no-undef
