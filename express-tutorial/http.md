@@ -27,7 +27,7 @@ HTTP headers contain text information stored in key-value pairs, and they are in
 
 Example of HTTP request headers from Google Chrome's network tab:
 
-![event loop's order of operations](../resources/img/HTTP_request_headers.png?raw=true)
+![Example HTTP request headers](../resources/img/HTTP_request_headers.png?raw=true)
 
 <br><br>
 
@@ -70,7 +70,7 @@ Much like an HTTP request, an HTTP response comes with headers that convey impor
 
 Example of HTTP response headers from Google Chrome's network tab:
 
-![event loop's order of operations](../resources/img/HTTP_response_headers.png?raw=true)
+![Example HTTP response header](../resources/img/HTTP_response_headers.png?raw=true)
 
 <br><br>
 
