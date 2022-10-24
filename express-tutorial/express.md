@@ -16,13 +16,13 @@ In layman terms, Express.js is a web application framework that is built on top 
 
 # Installing
 Assuming you’ve already installed Node.js, create a directory to hold your application, and make that your working directory.
-```
+```bash
 $ mkdir myapp
 $ cd myapp
 ```
 
 Use the npm init command to create a package.json file for your application.
-```
+```bash
 $ npm init
 ```
 
@@ -33,12 +33,12 @@ entry point: (index.js)
 Enter **app.js**, or whatever you want the name of the main file to be. If you want it to be **index.js**, hit RETURN to accept the suggested default file name.
 
 Now install Express in the **myapp** directory and save it in the dependencies list. For example:
-```
+```bash
 $ npm install express
 ```
 
 To install Express temporarily and not add it to the dependencies list:
-```
+```bash
 $ npm install express --no-save
 ```
 
@@ -51,4 +51,29 @@ Routing refers to the process of determining a specific behavior of an applicati
 
 ```
 app.METHOD(PATH, HANDLER)
+```
+
+* app is just an instance of Express.js. You can use any variable of your choice.
+* METHOD is an HTTP request method such as get, set, put, delete, etc.
+* PATH is the route to the server for a specific webpage
+* HANDLER is the callback function that is executed when the matching route is found.
+
+There are four main HTTP methods that can be supplied within the request. These methods help in specifying the operation requested by the user. Below table lists down all methods along with their explanations:
+
+![common http methods](../resources/img/HTTP_methods.png?raw=true)
+
+Below is an example showing usage of all the HTTP methods.
+```javascript
+var express = require('express');
+const app = express();
+
+app.use(express.json());
+ 
+app.get('/', function (req, res) {
+    console.log("GET Request Received");
+    res.send(' Welcome to Express.js Tutorial!/h2>');
+})
+ 
+app.listen(5000, () => console.log(`Listening on port 5000..`));
+
 ```
