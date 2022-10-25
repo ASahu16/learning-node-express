@@ -3,13 +3,13 @@ const app = express()
 const { products } = require('./public/data')
 
 app.get('/', (req, res) => {
-    res.send('<h1> Home Page </h1> <a href="/api/products">Go to products</a>')
+    res.send('<h1> Home Page </h1> <a href="/api/v1/products">Go to products</a>')
 });
 
 /**
  * Return list of all the products
  */
-app.get('/api/products/', (req, res) => {
+app.get('/api/v1/products/', (req, res) => {
     /**
      * Only send the relevenat data instead of duming all the data response. 
      * In order to achieve that we use the map.
@@ -25,7 +25,7 @@ app.get('/api/products/', (req, res) => {
  * Find and return product details.
  * Use request.pramas (route parameter) to find the product details
  */
-app.get('/api/products/:productID', (req, res) => {
+app.get('/api/v1/products/:productID', (req, res) => {
     // we can extract resquest both by destructuring it.
     // or by directly using the dot operator.
     const { productID } = req.params;
@@ -42,7 +42,7 @@ app.get('/api/products/:productID', (req, res) => {
 /**
  * Using multiple request parameter
  */
-app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
+app.get('/api/v1/products/:productID/reviews/:reviewID', (req, res) => {
     console.log(req.params)
     res.send('Review coming soon')
 });
