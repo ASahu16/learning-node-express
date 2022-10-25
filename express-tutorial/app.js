@@ -1,1 +1,1 @@
-const app = require('./src/06-basic-json'); // eslint-disable-line no-unused-vars
+const app = require('./src/07-params-query'); // eslint-disable-line no-unused-vars
