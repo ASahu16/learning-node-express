@@ -31,13 +31,22 @@ app.get('/api/products/:productID', (req, res) => {
     const { productID } = req.params;
     // const productID = req.params.productID;
     const result = products.find((product) => product.id === Number(productID));
-    
+
     // If no result found return 404, not found
-    if(!result){
+    if (!result) {
         return res.status(404).send('Product does not exist');
     }
     res.json(result);
 });
+
+/**
+ * Using multiple request parameter
+ */
+app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
+    console.log(req.params)
+    res.send('Review coming soon')
+});
+
 
 app.listen(5000, () => {
     console.log('Server is listening on port 5000....')
