@@ -47,6 +47,33 @@ app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
     res.send('Review coming soon')
 });
 
+/**
+ * Returns product list based on the user query
+ */
+app.get('/api/v2/products', (req, res) => {
+    // console.log(req.query)
+    const { search, limit } = req.query;
+    let sortedProducts = [...products];
+
+    // filter response data based on the product name 
+    if (search) {
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.name.startsWith(search);
+        });
+    }
+
+    // there is a limit, reduced the response data set to that limit
+    if (limit) {
+        sortedProducts = sortedProducts.slice(0, Number(limit));
+    }
+
+    if (sortedProducts.length < 1) {
+        // res.status(200).send('no products matched your search');
+        return res.status(200).json({ sucess: true, data: [] })
+    }
+
+    res.status(200).json(sortedProducts);
+});
 
 app.listen(5000, () => {
     console.log('Server is listening on port 5000....')
