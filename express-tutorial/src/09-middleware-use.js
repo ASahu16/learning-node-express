@@ -10,7 +10,7 @@ const { logger, authorize } = require('./public/middleware');
  * 
  * more info: https://expressjs.com/en/4x/api.html#app.use
  */
-app.use([logger, authorize]);
+// app.use([logger, authorize]);
 // Note: if we write app.use(...) after handling any request,
 // say after the app.get(...) methods then the middleware callback methods willn ot be called,
 // because express run code line by line.
@@ -27,11 +27,11 @@ app.get('/about', (req, res) => {
     res.send('About');
 });
 
-app.get('/api/products', (req, res) => {
+app.get('/api/products', [logger, authorize], (req, res) => {
     res.send('Products');
 });
 
-app.get('/api/items', (req, res) => {
+app.get('/api/items', [logger, authorize], (req, res) => {
     console.log(req.user);
     res.send('Items');
 });
