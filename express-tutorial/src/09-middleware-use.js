@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const { logger } = require('./public/logger');
+const { logger, authorize } = require('./public/middleware');
 
 /**
  * app.use([path,] callback [, callback...])
@@ -10,7 +10,7 @@ const { logger } = require('./public/logger');
  * 
  * more info: https://expressjs.com/en/4x/api.html#app.use
  */
-app.use(logger);
+app.use([logger, authorize]);
 // Note: if we write app.use(...) after handling any request,
 // say after the app.get(...) methods then the middleware callback methods willn ot be called,
 // because express run code line by line.

@@ -15,4 +15,15 @@ const logger = (req, res, next) => {
     next();
 }
 
-module.exports = { logger }
+const authorize = (req, res, next) => {
+    const { user } = req.query;
+    if (user === 'admin') {
+        req.user = { name: 'admin', id: 1 };
+        next() //continue to the next function
+    } else {
+        res.status(401).send('Unauthorized index');
+    }
+
+}
+
+module.exports = { logger, authorize }
