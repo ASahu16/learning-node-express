@@ -120,6 +120,49 @@ app.post('/login', (req, res) => {
     res.status(401).send('Please Provide Credentials');
 });
 
+/**
+ * @api {put} /api/people/:id           Update the name of a person
+ * @apiParam {Number} id                Persons unique ID.
+ * @apiBody {String} name               Mandatory name of the Person.
+ * @apiGroup People
+ * 
+ * @apiSuccess {String} success         true.
+ * @apiSuccess {Object} [data]          nested data object.
+ * @apiSuccess {Number} [data[id]]      id of the person.
+ * @apiSuccess {Object} [data[name]]    name of the person.
+ * 
+ * @apiErrorExample {json} Error-Response:
+ *      HTTP/1.1 404 Not Found
+ *      {
+ *          "success": false,
+ *          "msg": "no person with id 64"
+ *      }
+ * 
+ * @apiExample {curl} Example usage:
+ *      curl -X PUT http://localhost:5000/api/people/1 
+ *          -H 'Content-Type: application/json' 
+ *          -d '{"name":"Amitabh Bachchan"}'
+ */
+app.put('/api/people/:id', (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+
+    const person = people.find((person) => person.id === Number(id));
+
+    if (!person) {
+        return res
+            .status(404)
+            .json({ success: false, msg: `no person with id ${id}` });
+    }
+    const updatedDetail = people.map((person) => {
+        if (person.id === Number(id)) {
+            person.name = name;
+        }
+        return person;
+    })
+    res.status(200).json({ success: true, data: updatedDetail });
+})
+
 app.listen(5000, () => {
     console.log('Server is listening on port 5000....');
 });
