@@ -161,7 +161,45 @@ app.put('/api/people/:id', (req, res) => {
         return person;
     })
     res.status(200).json({ success: true, data: updatedDetail });
-})
+});
+
+/**
+ * @api {delete} /api/people/:id        Update the name of a person
+ * @apiParam {Number} id                Persons unique ID.
+ * @apiGroup People
+ * 
+ * @apiSuccess {String} success         true.
+ * @apiSuccess {Object} [data]          nested data object.
+ * @apiSuccess {Number} [data[id]]      id of the person.
+ * @apiSuccess {Object} [data[name]]    name of the person.
+ * 
+ * @apiErrorExample {json} Error-Response:
+ *      HTTP/1.1 404 Not Found
+ *      {
+ *          "success": false,
+ *          "msg": "no person with id 64"
+ *      }
+ * 
+ * @apiExample {curl} Example usage:
+ *      curl -X DELETE http://localhost:5000/api/people/1 
+ *          
+ */
+app.delete('/api/people/:id', (req, res) => {
+    const person = people.find((person) => person.id === Number(req.params.id));
+    if (!person) {
+        return res
+            .status(404)
+            .json({
+                success: false,
+                msg: `no person with id ${req.params.id}`
+            });
+    }
+    people = people.filter(
+        (person) => person.id !== Number(req.params.id)
+    );
+
+    return res.status(200).json({ success: true, data: people });
+});
 
 app.listen(5000, () => {
     console.log('Server is listening on port 5000....');
