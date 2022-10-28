@@ -43,6 +43,8 @@ app.use(express.json());
 /**
  * @api {get} /api/people/ Request list of all people name
  * @apiGroup People
+ * @apiExample {curl} Example usage:
+ *      curl -i http://localhost:5000/api/people/
  */
 app.get('/api/people', (req, res) => {
     res.status(200).json({ success: true, data: people });
@@ -50,12 +52,12 @@ app.get('/api/people', (req, res) => {
 
 
 /**
- * @api {post} /api/people/     Request list of all people name.
- * @apiBody {String} name       Mandatory name of the Person.
- * @apiGroup People
- * 
- * @apiSuccess {String} success true.
- * @apiSuccess {String} person  Name of the Person.
+ * @api {post} /api/people/         Request list of all people name.
+ * @apiBody {String} name           Mandatory name of the Person.
+ * @apiGroup People 
+ *  
+ * @apiSuccess {String} success     true.
+ * @apiSuccess {String} person      Name of the Person.
  * 
  * @apiErrorExample {json} Error-Response:
  *      HTTP/1.1 400 Not Found
@@ -77,6 +79,37 @@ app.post('/api/people', (req, res) => {
     res.status(201).json({ success: true, person: name });
 });
 
+/**
+ * @api {post} /api/curl/people/        Request list of all people name.
+ * @apiBody {String} name               Mandatory name of the Person.
+ * @apiGroup People
+ * 
+ * @apiSuccess {String} success         true.
+ * @apiSuccess {Object} [data]          nested data object.
+ * @apiSuccess {Number} [data[id]]      id of the person.
+ * @apiSuccess {Object} [data[name]]    name of the person.
+ * 
+ * @apiErrorExample {json} Error-Response:
+ *      HTTP/1.1 400 Not Found
+ *      {
+ *          "success": false,
+ *          "msg": "please provide name value"
+ *      }
+ * 
+ * @apiExample {curl} Example usage:
+ *      curl -X POST http://localhost:5000/api/curl/people/ 
+ *          -H 'Content-Type: application/json' 
+ *          -d '{"name":"Abhishek"}'
+ */
+app.post('/api/curl/people', (req, res) => {
+    const { name } = req.body;
+    if (!name) {
+        return res
+            .status(400)
+            .json({ success: false, msg: 'please provide name value' });
+    }
+    res.status(201).json({ success: true, data: [...people, name] });
+});
 
 app.post('/login', (req, res) => {
     const { name } = req.body;
