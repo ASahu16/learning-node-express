@@ -75,4 +75,19 @@ router.put('/:id', PeopleController.updatePerson);
  */
 router.delete('/:id', PeopleController.deletePerson);
 
+/**
+ * Alternate syntax, to setup route and controller
+ * using mthod chaining
+ *
+ *    router
+ *      .route('/')
+ *      .get(PeopleController.getPeople)
+ *      .post(PeopleController.createPerson);
+ *
+ *    router
+ *      .route('/:id')
+ *      .get(PeopleController.updatePerson)
+ *      .post(PeopleController.deletePerson);
+ */
+
 module.exports = router;
