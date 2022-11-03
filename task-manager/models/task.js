@@ -21,8 +21,24 @@ const mongoose = require('mongoose');
  *
  */
 const TaskSchema = new mongoose.Schema({
-  name: String,
-  completed: Boolean,
+  // Mongoose has several built-in validators.
+  // Some are shown below.
+  name: {
+    // interprets this schema to mean that `asset` is a string
+    type: String,
+    // Adds required validator to this SchemaType and custom error constructor
+    required: [true, 'name cannot be empty'],
+    // boolean, whether to always call .trim() on the value
+    trim: true,
+    // creates a validator that checks if the value length is not less
+    // than the given number
+    maxLength: [20, 'name cannot be more than 20 characters'],
+  },
+  completed: {
+    type: Boolean,
+    // Sets a default value for this SchemaType.
+    default: false,
+  },
 });
 
 /**
