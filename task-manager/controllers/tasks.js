@@ -33,13 +33,23 @@ const getTask = async (req, res) => {
   }
 };
 
-const updateTask = (req, res) => {
-  res.send('update Task');
+const updateTask = async (req, res) => {
+  try {
+    // update document
+    const { id: taskID } = req.params;
+    const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({ task });
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
 };
 
 const deleteTask = async (req, res) => {
   try {
-    // find single task documents
+    // find and delete single task documents
     const { id: taskID } = req.params;
     const task = await Task.findOneAndDelete({ _id: taskID });
     if (!task) {
