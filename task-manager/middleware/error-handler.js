@@ -1,3 +1,4 @@
+const { CustomAPIError } = require('../errors/custom-error');
 /**
  * Express comes with a built-in error handler that takes care of
  * any errors that might be encountered in the app.
@@ -16,7 +17,12 @@
  * more info visit: http://expressjs.com/en/guide/error-handling.html#the-default-error-handler
  */
 const errorHandlerMiddleware = (err, req, res, next) => {
-  return res.status(500).json({ message: err });
+  if (err instanceof CustomAPIError) {
+    return res.status(err.statusCode).json({ message: err.message });
+  }
+  return res
+    .status(500)
+    .json({ message: 'Something went wrong, please try again' });
 };
 
 module.exports = errorHandlerMiddleware;
