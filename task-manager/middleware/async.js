@@ -14,6 +14,10 @@ const asyncWrapper = (callback) => {
     try {
       await callback(req, res, next);
     } catch (error) {
+      /**
+       * If you pass an error to next() and you do not handle it in a error
+       * handler, it will be handled by the built-in error handler.
+       */
       next(error);
     }
   };
