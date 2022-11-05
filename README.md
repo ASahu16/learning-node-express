@@ -6,3 +6,6 @@ Learn how to use Node and Express. First, we'll learn the fundamentals of Node a
 1. Node Tutorial
 2. Express Tutorial
 3. Task Manager (MongoDB, Mongoose)
+
+*Inspired from [john-smilga | node-express-course
+](https://github.com/john-smilga/node-express-course)*
